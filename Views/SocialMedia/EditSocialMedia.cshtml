@@ -1,0 +1,38 @@
+﻿@model EntityLayer.Concrete.SocialMedia
+@{
+    ViewData["Title"] = "EditSocialMedia";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-header bg-white text-black d-flex justify-content-between align-items-center fs-3 py-3">
+            <span class="btn btn-rounded btn-outline-dark"> <i class="mdi mdi-battery-charging-90"></i> Sosyal Medya Güncelleme Sayfası  </span>
+            <a href="btn btn-rounded btn-outline-info"> <i class="mdi mdi-arrow-right"></i> Sosyal Medya Listesine Dön  </a>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("EditSocialMedia", "SocialMedia", FormMethod.Post))
+            {
+                @Html.HiddenFor(x => x.SocialMediaId, new { @class = "form-control" })
+                @Html.Label("Ad ve Soyad")
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                <br />
+                @Html.Label("Url")
+                @Html.TextBoxFor(x => x.Url, new { @class = "form-control" })
+                <br />
+                @Html.Label("Ikon")
+                @Html.TextBoxFor(x => x.Icon, new { @class = "form-control" })
+                <br />
+                @Html.Label("Durum")
+                @Html.TextBoxFor(x => x.Status, new { @class = "form-control" })
+                <br />
+
+                <button class="btn btn-rounded btn-outline-secondary">
+                    <i class="mdi mdi-content-save-outline"></i>Güncelle
+                </button>
+            }
+        </div>
+    </div>
+</div>
+
+

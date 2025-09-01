@@ -1,0 +1,31 @@
+﻿@model EntityLayer.Concrete.Announcement
+@{
+    ViewData["Title"] = "AnnouncementDetails";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card shadow-lg">
+                <div class="card-header bg-white text-black d-flex justify-content-between fs-3 py-3">
+                    <span class="btn btn-rounded btn-outline-dark"> <i class="mdi mdi-battery-charging-90"></i> Duyuru Detay Sayfası </span>
+                    <a href="/Writer/Default/Index/" class="btn btn-rounded-10 btn-outline-info"> <i class="mdi mdi-plus"></i> Duyuru Listesine Dön </a>
+                </div>
+                <div class="card-body">
+                    <form class="form-group">
+                        @Html.Label("Id")
+                        @Html.TextBoxFor(x => x.AnnouncementId, new { @class = "form-control" })
+                        <br />
+
+                        @Html.Label("İçerik")
+                        @Html.TextAreaFor(x => x.Content, 10, 3, new { @class = "form-control" })
+                    </form>
+                    <div class="text-right">
+                        <small><strong>@Model.Date.ToString("dd.MM.yyyy")</strong></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿@using EntityLayer.Concrete
+@model List<Testimonial>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-header bg-white text-white d-flex justify-content-between fs-4 py-3">
+            <span class="btn btn-rounded btn-outline-dark"><i class="mdi mdi-battery-charging-90"></i> Referans Sayfası </span>
+            <a href="/Testimonial/AddTestimonial/" class="btn btn-rounded btn-outline-info"> <i class="mdi mdi-plus"></i> Yeni Referans Ekle </a>
+        </div>
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-dark text-white fs-3 py-4">
+                    <thead>
+                        <tr>
+                            <th> # </th>
+                            <th> Resim  </th>
+                            <th> Ad & Soyad </th>
+                            <th> Yorum </th>
+                            <th> Sil  </th>
+                            <th> Güncelle </th>
+                            <th> Detaylar </th>
+                        </tr>
+
+
+                    </thead>
+                    <tbody>
+                        @foreach (var referans in Model)
+                        {
+                            <tr>
+                                <td> <strong> @referans.TestimonialId </strong> </td>
+                                <td> <img src="@referans.ImageUrl" class="img-thumbnail" width="90" height="90" /> </td>
+                                <td> @referans.ClientName </td>
+                                <td> @(@referans.Comment.Length > 18 ? referans.Comment.Substring(0, 18) + "..." : referans.Comment) </td>
+                                <td>
+                                    <a href="/Testimonial/DeleteTestimonial/@referans.TestimonialId" class="btn btn-rounded btn-outline-danger">
+                                        <i href="mdi mdi-delete"></i> Sil
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="/Testimonial/EditTestimonial/@referans.TestimonialId" class="btn btn-rounded btn-outline-success">
+                                        <i href="mdi mdi-tooltip-edit"></i> Güncelle
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="/Testimonial/TestimonialDetails/@referans.TestimonialId" class="btn btn-rounded btn-outline-info">
+                                        <i href="mdi mdi-information-outline"></i> Detay
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

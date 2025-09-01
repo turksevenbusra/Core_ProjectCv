@@ -1,0 +1,38 @@
+﻿@model EntityLayer.Concrete.WriterMessage
+@{
+    ViewData["Title"] = "ReceiverMessageDetails";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card shadow-lg">
+                <div class="card-header bg-white text-black d-flex justify-content-between fs-3 py-3">
+                    <span class="btn btn-rounded btn-outline-dark"> <i class="ti-eye ml-1"></i> Giden Mesaj Detayları </span>
+                    <a href="/Writer/Message/ReceiverMessage/" class="btn btn-rounded-10 btn-outline-info"> 
+                        <i class="ti-arrow-right ml-2"></i> Giden Mesaj Kutusuna Dön </a>
+                </div>
+                <div class="card-body">
+                    <form class="form-group">
+                        @Html.HiddenFor(x => x.WriterUserId, new { @class = "form-control" })
+                        @Html.Label("Alıcı Adı")
+                        @Html.TextBoxFor(x => x.ReceiverName, new { @class = "form-control" })
+                        <br />
+                        @Html.Label("Alıcı Mail")
+                        @Html.TextBoxFor(x => x.Receiver, new { @class = "form-control" })
+                        <br />
+                        @Html.Label("Mesaj")
+                        @Html.TextAreaFor(x => x.WriterContent, 10, 3, new { @class = "form-control" })
+                    </form>
+                    <div class="text-right">
+                        <small><strong>@Model.Date.ToString("dd.MM.yyyy")</strong></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,38 @@
+﻿@model EntityLayer.Concrete.WriterMessage
+@{
+    ViewData["Title"] = "SendAdminMessage";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-white text-black d-flex justify-content-between align-items-center">
+            <span class="btn btn-rounded btn-outline-dark">
+                <i class="mdi mdi-battery-charging-90"></i> Yeni Mesaj Gönderme Paneli
+            </span>
+        </div>
+        <div class="body">
+            @using (Html.BeginForm("SendAdminMessage", "AdminMessage", FormMethod.Get))
+            {
+
+                @Html.Label("Konu")
+                @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
+                <br />
+
+
+                @Html.Label("Alıcı Mail ")
+                @Html.TextBoxFor(x => x.Receiver, new { @class = "form-control" })
+                <br />
+
+                @Html.Label("Mesaj İçeriği")
+                @Html.TextAreaFor(x => x.WriterContent, 10, 3, new { @class = "form-control" })
+                <br />
+
+                <a asp-action="SenderMessageList" class="btn btn-rounded btn-outline-warning"> Gönder </a>
+                <a asp-action="ReceiverMessageList" class="btn btn-rounded btn-outline-dark"> İptal </a>
+            }
+        </div>
+    </div>
+</div>
+
+

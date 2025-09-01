@@ -1,0 +1,53 @@
+﻿@using EntityLayer.Concrete
+@model List<WriterMessage>
+@{
+    ViewData["Title"] = "SenderMessageList";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-white text-black d-flex justify-content-between align-items-center">
+            <span class="btn btn-rounded btn-outline-dark">
+                <i class="mdi mdi-battery-charging-90"></i> Yazar -  Admin Giden Kutusu
+            </span>
+        </div>
+        <div class="body">
+            <table class=" table table-bordered table-dark text-white table-striped fs-4 py-lg-3">
+                <thead>
+                    <tr>
+                        <th> # </th>
+                        <th> Alıcı </th>
+                        <th> Konu </th>
+                        <th> Tarih </th>
+                        <th> Sil </th>
+                        <th> Mesajı Gör </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var message in Model)
+                    {
+                        <tr>
+                            <td> @message.WriterUserId </td>
+                            <td> @message.ReceiverName </td>
+                            <td> @message.Subject </td>
+                            <td> @message.Date.ToShortDateString()</td>
+                            <td>
+                                <a href="/AdminMessage/DeleteAdminMessage/@message.WriterUserId" class="btn btn-rounded btn-outline-danger">
+                                    <i class="mdi mdi-delete"></i> Sil
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/AdminMessage/AdminMessageDetails/@message.WriterUserId" class="btn btn-rounded btn-outline-primary">
+                                    <i class="mdi mdi-information-outline"></i> Detay
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,44 @@
+﻿@model EntityLayer.Concrete.Experience
+@{
+    ViewData["Title"] = "EditExperience";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <div class="card-header bg-white text-black d-flex justify-content-between align-items-center">
+                <span class="btn btn-rounded btn-outline-dark">
+                    <i class="mdi mdi-battery-charging-90"></i> Deneyim Güncelleme Sayfası
+                </span>
+                <a href="/Experience/Index/" class="btn btn-rounded btn-outline-info">
+                    <i class="mdi mdi-plus"></i> Deneyim Listesine Dön
+                </a>
+            </div>
+            <div class="body">
+                @using (Html.BeginForm("EditExperience", "Experience", FormMethod.Post))
+                {
+                    @Html.HiddenFor(x => x.ExperienceId)
+                    @Html.Label("Deneyim Adı")
+                    @Html.TextBoxFor(x => x.ExperienceName, new { @class = "form-control" })
+                    <br />
+
+                    @Html.Label("Tarih")
+                    @Html.TextBoxFor(x => x.Date, new { @class = "form-control", @Value = DateTime.Now.ToString("yyyy-MM-dd") })
+                    <br />
+
+                    @Html.Label("Resim")
+                    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+                    <br />
+
+                    @Html.Label("Deneyim Adı")
+                    @Html.TextAreaFor(x => x.Description, 10, 3, new { @class = "form-control" })
+
+                    <br />
+                    <button class="btn btn-outline-primary"> <i class="mdi mdi-pencil"></i>  Güncelle  </button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

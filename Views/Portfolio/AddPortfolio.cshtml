@@ -1,0 +1,73 @@
+﻿@model EntityLayer.Concrete.Portfolio
+@{
+    ViewData["Title"] = "AddPortfolio";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <div class="card-header bg-white text-black d-flex justify-content-between align-items-center">
+                <span class="btn btn-rounded btn-outline-dark">
+                    <i class="mdi mdi-battery-charging-90"></i> Portfolio Ekleme Sayfası
+                </span>
+                <a href="/Experience/Index/" class="btn btn-rounded btn-outline-info">
+                    <i class="mdi mdi-plus"></i> Portfolio Listesine Dön
+                </a>
+            </div>
+            <div class="body">
+                @using (Html.BeginForm("AddPortfolio", "Portfolio", FormMethod.Post))
+                {
+                    @Html.Label("Proje Adı")
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Name)
+                    <br />
+
+                    @Html.Label("Fiyat")
+                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control", type = "number", min = "1", max = "10000000" })
+                    @Html.ValidationMessageFor(x => x.Price)
+                    <br />
+
+                    @Html.Label("Resim")
+                    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ImageUrl )
+                    <br />
+
+                    @Html.Label("Açıklama Metni")
+                    @Html.TextAreaFor(x => x.Description, 10, 3, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Description )
+                    <br />
+
+                    @Html.Label("Platform")
+                    <select class="form-control" name="Platform">
+                        <option value="Mvc"> MVC </option>
+                        <option value="Eğitim"> Eğitim </option>
+                    </select>
+
+                    @Html.Label("Durum")
+                    <select class="form-control" name="Status">
+                        @for (int i = 0; i <= 1; i++)
+                        {
+                            <option value="@i"> @i </option>
+                        }
+                    </select>
+                    <br />
+
+                    @Html.Label("Değer")
+                    <select class="form-control" name="Value">
+                        @for (int i = 1; i <= 100; i++)
+                        {
+                            <option value="@i"> @i </option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.Value)
+                    <br />
+
+                    <button class="btn btn-outline-warning"> <i class="mdi mdi-content-save-outline"></i>  Kaydet </button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,58 @@
+﻿@using EntityLayer.Concrete
+@model List<Experience>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <div class="card-header bg-white text-black d-flex justify-content-between align-items-center">
+                <span class="btn btn-rounded btn-outline-dark">
+                    <i class="mdi mdi-battery-charging-90"></i> Deneyim Sayfası
+                </span>
+                <a href="/Experience/AddExperience/" class="btn btn-rounded btn-outline-info">
+                    <i class="mdi mdi-plus"></i> Yeni Deneyim Ekle
+                </a>
+            </div>
+            <div class="body">
+                <table class="table table-bordered table-dark text-white table-striped fs-4 py-3">
+                    <thead>
+                        <tr>
+                            <th> # </th>
+                            <th> Deneyim Adı  </th>
+                            <th> Tarih </th>
+                            <th> Açıklama  </th>
+                            <th> Resim </th>
+                            <th> Sil </th>
+                            <th> Güncelle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var ex in Model)
+                        {
+                            <tr>
+                                <td> @ex.ExperienceId </td>
+                                <td> @ex.ExperienceName </td>
+                                <td> @ex.Date.ToShortDateString() </td>
+                                <td> @(ex.Description.Length > 20 ? ex.Description.Substring(0, 20) + "..." : ex.Description) </td>
+                                <td> <img src="@ex.ImageUrl" alt="deneyim resmi" class="img-thumbnail" style="width:80px; height:60px;" /> </td>
+                                <td>
+                                    <a href="/Experience/DeleteExperience/@ex.ExperienceId" class="btn btn-rounded btn-outline-danger">
+                                        <i class="mdi mdi-delete"></i>  Sil
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="/Experience/EditExperience/@ex.ExperienceId" class="btn btn-rounded btn-outline-success">
+                                        <i class="mdi mdi-tooltip-edit"></i> Güncelle
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div> 

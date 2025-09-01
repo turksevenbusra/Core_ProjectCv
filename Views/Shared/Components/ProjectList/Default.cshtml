@@ -1,0 +1,62 @@
+﻿@using EntityLayer.Concrete
+@model List<Portfolio>
+
+<div class="col-12 grid-margin">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title"> Proje Listesi </h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th> # </th>
+                            <th> Resim </th>
+                            <th> Proje Adı </th>
+                            <th> Fiyat </th>
+                            <th> Açıklama  </th>
+                            <th> Platform </th>
+                            <th> Değer </th>
+                            <th> Durum </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var p in Model)
+                        {
+
+                            <tr>
+                                <td> @p.PortfolioId</td>
+                                <td>  <img src="~/Template/images/portfolio/@p.ImageUrl" class="img-thumbnail" width="80" height="80" />  </td>
+                                <td> @p.Name </td>
+                                <td> @p.Price </td>
+                                <td> @(p.Description.Length > 15 ? p.Description.Substring(0, 15) + "..." : p.Description) </td>
+                                <td>
+                                    @if (p.Platform == "Mvc")
+                                    {
+                                        <div class="badge badge-outline-info"> @p.Platform </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="badge badge-outline-warning"> @p.Platform</div>
+                                    }
+                                </td>
+                                <td> @p.Value% </td>
+                                <td>
+                                    @if (@p.Status==true)
+                                    {
+                                        <div class="badge badge-outline-success"> Tamamlandı </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="badge badge-outline-danger"> Tamamlanmadı </div>
+                                    }
+                                </td>
+                                    
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

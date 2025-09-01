@@ -1,0 +1,37 @@
+﻿@model EntityLayer.Concrete.Testimonial
+
+@{
+    ViewData["Title"] = "AddTestimonial";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-header bg-white text-black d-flex justify-content-between align-items-center fs-4 py-3">
+            <span class="btn btn-rounded btn-outline-dark"><i class="mdi mdi-battery-charging-90"></i> Referans Ekleme Sayfası </span>
+            <a href="/Testimonial/Index/" class="btn btn-rounded btn-outline-info"> <i class="mdi mdi-plus"></i> Referans Listesine Dön </a>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("AddTestimonial", "Testimonial", FormMethod.Post))
+            {
+                @Html.Label("Referans Olan Kişinin Adı ve Soyadı")
+                @Html.TextBoxFor(x => x.ClientName, new { @class = "form-control" })
+                <br />
+
+                @Html.Label("Şirket Adı")
+                @Html.TextBoxFor(x => x.Company, new { @class = "form-control" })
+                <br />
+                @Html.Label("Referans Olan Kişinin Yorumu")
+                @Html.TextAreaFor(x => x.Comment, new { @class = "form-control" })
+                <br />
+
+                @Html.Label("Resim")
+                @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+                <br />
+                <button class="btn btn-rounded btn-outline-succes"> Kaydet </button>
+            }
+        </div>
+    </div>
+</div>
+
+

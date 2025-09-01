@@ -1,0 +1,60 @@
+﻿@using EntityLayer.Concrete
+@model List<Contact>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-white text-black d-flex justify-content-between align-items-center">
+            <span class="btn btn-rounded btn-outline-dark">
+                <i class="mdi mdi-battery-charging-90"></i> İletişim Sayfası
+            </span>
+        </div>
+        <div class="body">
+            <table class=" table table-bordered table-dark text-white table-striped fs-4 py-lg-3">
+                <thead>
+                    <tr>
+                        <th> # </th>
+                        <th> Başlık </th>
+                        <th> Açıklama </th>
+                        <th> Mail </th>
+                        <th> Telefon </th>
+                        <th> Güncelle </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var iletisim in Model)
+                    {
+                        <tr>
+                            <td> @iletisim.ContactId </td>
+                            <td> @(iletisim.Title.Length > 15 ? iletisim.Title.Substring(0,12)+ "..." :iletisim.Description) </td>
+                            <td> @(iletisim.Description.Length > 12 ? iletisim.Description.Substring(0, 12) + "..." : iletisim.Description) </td>
+                            <td> @iletisim.Mail </td>
+                            <td> @iletisim.Phone </td>
+                            <td>
+                                <a href="/Contact/EditContact/@iletisim.ContactId" class="btn btn-rounded btn-outline-success">
+                                    <i class="mdi mdi-tooltip-edit"></i> Güncelle
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

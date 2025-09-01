@@ -1,0 +1,35 @@
+﻿@model EntityLayer.Concrete.Skill
+@{
+    ViewData["Title"] = "EditSkill";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-header bg-white text-white d-flex justify-content-between align-items-center fs-3 py-3">
+            <span class="btn btn-rounded btn-outline-dark"> <i class="mdi mdi-battery-charging"></i> Yetenek Güncelleme Sayfası  </span>
+            <a href="/Skill/Index" class="btn btn-rounded btn-outline-info"> <i class="mdi mdi-plus"></i>  Hizmet Listesine Dön</a>
+        </div>
+        <div class="body">
+            @using (Html.BeginForm("EditSkill", "Skill", FormMethod.Post))
+            {
+                @Html.HiddenFor(x => x.SkillId)
+                @Html.Label("Yetenek Adı")
+                @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                <br />
+
+                @Html.Label("Değer")
+                <select class="form-control" name="Value">
+                    @for (int i = 1; i <= 100; i++)
+                    {
+                        <option value="@i"> @i </option>
+                    }
+                </select>
+                <br />
+
+                <button class="btn btn-outline-primary"> <i class="mdi mdi-pencil"></i>  Güncelle </button>
+            }
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,49 @@
+﻿@using EntityLayer.Concrete
+@model List<About>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-header bg-white text-black d-flex justify-content-between align-items-center">
+            <span class="btn btn-rounded btn-outline-dark"> <i class="mdi mdi-battery-charging-90"></i> Hakkımızda Sayfası </span>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-dark text-white table-striped fs-4 py-3">
+                <thead>
+                    <tr>
+                        <th> Başlık </th>
+                        <th> Açıklama </th>
+                        <th> Yaş </th>
+                        @* <th> Mail </th> *@
+                        <th> Telefon  </th>
+                        @* <th> Adres </th> *@
+                        <th> Resim </th>
+                        <th> Güncelle </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var a in Model)
+                    {
+                        <tr>
+                            <td> @a.Title </td>
+                            <td> @(a.Description.Length > 18 ? a.Description.Substring(0, 18) + "..." : a.Description) </td>
+                            <td> @a.Age </td>
+                            @* <td> @a.Mail </td> *@
+                            <td> @a.Phone </td>
+                            @* <td> @a.Address </td> *@
+                            <td> <img src="@a.ImageUrl" alt="resim" class="img-thumbnail" style="width:60px; height:60px; object-fit:cover" /></td>
+                            <td>
+                                <a href="/About/EditAbout/@a.AboutId" class="btn btn-rounded btn-outline-success">
+                                    <i class="mdi mdi-tooltip-edit"></i> Güncelle
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

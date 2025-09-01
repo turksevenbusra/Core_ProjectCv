@@ -1,0 +1,49 @@
+﻿@using EntityLayer.Concrete
+@model List<Service>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-header bg-white text-black d-flex justify-content-between align-items-center fs-4 py-4">
+            <span class="btn btn-outline-dark"> <i class="mdi mdi-battery-charging-90"></i> Hizmet Sayfası </span>
+            <a href="/Service/AddService/" class="btn btn-outline-info"> <i class="mdi mdi-plus"></i> Yeni Hizmet Ekle </a>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-dark text-white fs-4 py-4">
+                <thead>
+                    <tr>
+                        <th> # </th>
+                        <th> Başlık </th>
+                        <th> Resim </th>
+                        <th> Sil </th>
+                        <th> Güncelle </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var hizmet in Model)
+                    {
+                        <tr>
+                            <td> @hizmet.ServiceId </td>
+                            <td> @hizmet.Title </td>
+                            <td> <img src="@hizmet.ImageUrl" class="img-thumbnail" width="90" height="90"/> </td>
+                            <td>
+                                <a href="/Service/DeleteService/@hizmet.ServiceId" class="btn btn-rounded btn-outline-danger">
+                                    <i class="mdi mdi-delete"></i> Sil    
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/Service/EditService/@hizmet.ServiceId" class="btn btn-rounded btn-outline-success"> 
+                                    <i class="mdi mdi-tooltip-edit"></i> Güncelle    
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,43 @@
+﻿@using EntityLayer.Concrete
+@model List<Feature>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-header bg-white text-black d-flex justify-content-between align-items-center fs-4 py-3">
+            <span class="btn btn-rounded btn-outline-dark"> <i class="mdi mdi-battery-charging-90"></i> Öne Çıkan Sayfası </span>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-dark text-white fs-4 py-3">
+                <thead>
+                    <tr>
+                        <th> # </th>
+                        <th> Başlık </th>
+                        <th> Ad ve Soyad </th>
+                        <th> Alt Başlık / Unvan </th>
+                        <th> Güncelle </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var oneCikan in Model)
+                    {
+                        <tr>
+                            <td> @oneCikan.FeatureId</td>
+                            <td> @oneCikan.Header</td>
+                            <td> @oneCikan.Name</td>
+                            <td> @oneCikan.Title</td>
+                            <td> 
+                                <a href="/Feature/EditFeature/@oneCikan.FeatureId" class="btn btn-rounded btn-outline-success"> 
+                                    <i class="mdi mdi-tooltip-edit"></i> Güncelle
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

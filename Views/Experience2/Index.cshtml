@@ -1,0 +1,119 @@
+﻿@model EntityLayer.Concrete.Experience
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+
+<div class="col-md-6">
+    <div class="p-2">
+        <button type="button" id="btngetlistall" class="btn btn-rounded btn-outline-primary"> Verileri Getir </button>
+        <button type="button" id="btnaddexperience" class="btn btn-rounded btn-outline-info"> Kaydet </button>
+        <button type="button" id="btnid" class="btn btn-rounded btn-outline-warning"> Id ile Getir </button>
+        <button type="button" id="btndelete" class="btn btn-rounded btn-outline-danger"> Sil </button>
+        <button type="button" id="btnupdate" class="btn btn-rounded btn-outline-success"> Güncelle </button>
+    </div>
+</div>
+
+<h3 class="text-center"> Deneyim Listesi </h3>
+<div class="p-2" id="listexperience">
+
+</div>
+<div class="p-2" id="listByIdExperience">
+
+</div>
+<br />
+
+<div class="col-md-12">
+    <h5> Ekleme Paneli </h5>
+    <input type="text" class="form-control" id="inpName" placeholder="Id Giriniz" />
+    <br />
+    <input type="text" class="form-control" id="inpDate" placeholder="Tarih" />
+    <br />
+</div>
+
+<div class="col-md-12">
+    <h5> Id'ye Göre Getirme Paneli </h5>
+    <input type="text" class="form-control" id="inpid" placeholder="Ad" />
+    <br />
+</div>
+<div class="col-md-12">
+    <h5> Silme Paneli </h5>
+    <input type="text" class="form-control" id="inpexid" placeholder="Ad" />
+    <br />
+
+</div>
+
+
+@section Scripts {
+    <script>
+
+         $("#getlistall").click(function()){
+         $.ajax({
+         contentType: "application/json",
+         dataType: "json",
+         type: "Get",
+         url: "/Experience2/ListExperience/",
+
+         success: function(funk){
+         let values = jQuery.parseJSON(funk);
+         console.log(values);
+         let htmlSt= "<table class=table table-bordered> <tr> <th> Id </th> <th> Başlık </th> <th> Tarih </th> </tr>";
+        $.each(values,(index,value)=>{
+            htmlSt+=`<tr> <td>${value.ExperienceId} </td> <td> ${value.Name} </td> <td>${value.Date} </td> </tr>`
+        });
+        htmlSt+="</<table>";
+        $("listexperience").hmtl(htmlstd);
+        }
+        });
+        });
+        $("#btnadd").click(function(){
+            let values={
+                Name: $("#inputName").val(),
+                Date: $("#inputDate").val()
+
+            };
+            $.ajax({
+                    type:"Post",
+                    url: "Experience2/AddExperience/",
+                    data: values,
+                    success: function(funk1){
+                        let result=jQuery.parseJSON(funk1);
+                        alert(result.Name+"Başarılı bir şekilde eklendi");
+                    }
+                   });
+            });
+            $("#btnid").click(x=>{
+                let id=$("#inpid").val();
+                $.ajax({
+                    contentType: "application/json",
+                    dataType:"json",
+                    type: "Get",
+                    url: "/Experience2/GetbyId/",
+                    data: {ExperienceId: id},
+                    success: function(funk2){
+                        let result= jQuery.parseJSON(funk2;
+                        console.log(result);
+                        let htmlstr= `<table class=table table-hover> <tr> <th>Deneyim Id</th> 
+                        <td> ${result.ExperienceId} </td> <tr> <th> Deneyim Başlığı </th> <td> ${result.Name} </td> </tr> </table>`;
+                        $("#listByIdExperience").hmtl(hmtlstr);
+                    }
+                });
+            });
+            $(#btndelete).click(x=>{
+                let id= $("#inpexid").val();
+                $.ajax({
+                    url: "/Experience/DeleteExperience/"+id,
+                    type: "post",
+                    contentType:"application/json",
+                    dataType:"json",
+                    success: function(funk3){
+                        loadData();
+                    }
+                })
+            })
+    </script>
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+

@@ -1,0 +1,56 @@
+﻿@model EntityLayer.Concrete.WriterUser
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="col-md-6">
+    <div class="p-2">
+        <button type="button" id="btngetlistall" class="btn btn-rounded btn-outline-primary"> Verileri Getir </button>
+        <button type="button" id="btnadduser" class="btn btn-rounded btn-outline-info"> Kaydet </button>
+    </div>
+</div>
+
+<h3 class="text-center"> Yazar Listesi </h3>
+<div class="p-2" id="listuser">
+    buraya
+</div>
+<br />
+
+<div class="col-md-12">
+    <input type="text" class="form-control" id="inpName" placeholder="Ad" />
+    <br />
+    <input type="text" class="form-control" id="inpSurnameSurname" placeholder="Surname" />
+    <br />
+    <input type="text" class="form-control" id="inpUserName" placeholder="Kullanıcı Adınız" />
+    <br />
+    <input type="text" class="form-control" id="inpMail" placeholder="Mail Adresi" />
+    <br />
+</div>
+
+
+@section Scripts {
+    <script>
+
+            $("#getlistall").click(function()){
+            $.ajax({
+            contentType: "application/json",
+            dataType: "json",
+            type: "Get",
+            url: "/Writer/ListUser/",
+
+            success: function(funk){
+            let users = jQuery.parseJSON(funk);
+            console.log(users);
+            let htmlSt= "<table class=table table-bordered> <tr> <th> Id </th> <th> Başlık </th> <th> Tarih </th> </tr>";
+            $.each(values,(index,value)=>{
+                htmlSt+=`<tr> <td>${value.ExperienceId} </td> <td> ${value.Name} </td> <td>${value.Date} </td> </tr>`
+            });
+            htmlSt+="</<table>";
+            $("listuser").hmtl(htmlstd);
+            }
+            });
+            });
+    </script>
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>

@@ -1,0 +1,36 @@
+﻿@model EntityLayer.Concrete.Contact
+@{
+    ViewData["Title"] = "EditContact";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-white text-black d-flex justify-content-between fs-3 py-3">
+            <span class="btn btn-rounded btn-outline-dark"> <i class="mdi mdi-battery-charging-90"></i> İletişim Güncelleme Sayfası  </span>
+        </div>
+        <div class="body">
+
+            @using (Html.BeginForm("EditContact", "Contact", FormMethod.Post))
+            {
+                @Html.HiddenFor(x => x.ContactId)
+                @Html.Label("Başlık")
+                @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                <br />
+
+                @Html.Label("Açıklama Metni")
+                @Html.TextAreaFor(x => x.Description, 10, 3, new { @class = "form-control" })
+                <br />
+
+                @Html.Label("Mail Adresi")
+                @Html.TextBoxFor(x => x.Mail, new { @class = "form-control", type = "email" })
+                <br />
+
+                @Html.Label("Telefon")
+                @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", type = "phone" })
+                <br />
+                <button class="btn btn-outline-primary"> <i class="mdi mdi-pencil"></i> Güncelle </button>
+            }
+        </div>
+    </div>
+</div>

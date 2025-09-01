@@ -1,0 +1,41 @@
+﻿@model EntityLayer.Concrete.Skill
+@{
+    ViewData["Title"] = "AddSkill";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <div class="card-header bg-white text-black d-flex justify-content-between align-items-center">
+                <span class="btn btn-rounded btn-outline-dark">
+                    <i class="mdi mdi-battery-charging-90"></i> Yetenek Ekleme Sayfası
+                </span>
+                <a href="/Skill/Index/" class="btn btn-rounded btn-outline-info">
+                    <i class="mdi mdi-plus"></i> Yetenek Listesine Dön
+                </a>
+            </div>
+            <div class="body">
+                @using (Html.BeginForm("AddSkill", "Skill", FormMethod.Post))
+                {
+                    @Html.Label("Yetenek Adı")
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                    <br />
+
+                    
+                    @Html.Label("Değer")
+                    <select class="form-control" name="Value">
+                        @for (int i = 1; i <= 100; i++)
+                        {
+                            <option value="@i"> @i </option>
+                        }
+                    </select>
+                    <br />
+
+                    <button class="btn btn-outline-warning"> <i class="mdi mdi-content-save-outline"></i>  Kaydet </button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
