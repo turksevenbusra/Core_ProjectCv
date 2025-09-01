@@ -1,4 +1,15 @@
-# Asp.Net Core 5 Web Projesi 
-Bu proje C# ve ASP.NET Core 5.0 MVC kullanlarak geliŸtirilmiŸtir. 
-Udemy "Asp.Net Core 5 ile Adm Adm Web GeliŸtirme" kursunu takip ederek geliŸtirilmiŸtir. 
-™zellikler: Katmanl Mimari, Entity Framework Core, Repository Pattern, Identity ile kullanc y”netimi, Admin Paneli, Bootstrap 
+## Ã–zellikler
+- KatmanlÄ± Mimari (N-Tier Architecture)  
+- Entity Framework Core (Code First)  
+- Repository ve Unit of Work Pattern  
+- Identity ile kullanÄ±cÄ± yÃ¶netimi ve rol sistemi  
+- Admin Paneli ile CRUD iÅŸlemleri  
+- Responsive tasarÄ±m: Bootstrap kullanÄ±ldÄ±  
+- Modern web uygulama standartlarÄ±na uygun yapÄ±
+
+## KullanÄ±lan Teknolojiler
+- **C#**  
+- **ASP.NET Core 5.0 MVC**  
+- **MSSQL**  
+- **Entity Framework Core**  
+- **Bootstrap & HTML/CSS/JS**
